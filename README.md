@@ -17,3 +17,16 @@ This program is currently only intended to run on LUKS-encrypted Linux setups.
 # Dependencies
 
 Requires libcryptsetup-dev to compile
+
+```
+$ sudo apt install libcryptsetup-dev
+```
+
+# Manual wipe of LUKS
+
+```sh
+cryptsetup luksDump /dev/nvme0n1p3 # see keyslots
+cryptsetup -v luksKillSlot /dev/nvme0n1p3 1 # destroy key at slot 1, etc.
+cryptsetup -v luksKillSlot /dev/nvme0n1p3 2
+# ..
+```
